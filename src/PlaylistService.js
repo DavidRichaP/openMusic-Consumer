@@ -9,8 +9,8 @@ class PlaylistService {
     const query = {
       text: `SELECT playlists.id, playlists.name FROM playlists
       LEFT JOIN users ON users.id = playlists.owner
-      LEFT JOIN collaborations ON collaborations.playlist.id = playlists.id
-      WHERE playlists.id = $1 AND playlists.owner = $2 OR collaborations.playlists_id = $1
+      LEFT JOIN collaborations ON collaborations.playlist_id = playlists.id
+      WHERE playlists.id = $1 AND playlists.owner = $2 OR collaborations.playlist_id = $1
       GROUP BY playlists.id, users.id`,
       values: [playlistId, getUserPlaylists]
     }
@@ -25,9 +25,9 @@ class PlaylistService {
 
   async getPlaylistSongs(playlistId) {
     const query = {
-      text: `SELECT songs.id, songs.title, songs.performer FROM playlistsongs
-      LEFT JOIN songs ON songs.id = playlistsongs.song_id
-      where playlistsongs.playlist_id =$1 GROUP BY playlistsongs.id, songs.id`,
+      text: `SELECT songs.id, songs.title, songs.performer FROM playlist_songs
+      LEFT JOIN songs ON songs.id = playlist_songs.song_id
+      where playlist_songs.playlist_id =$1 GROUP BY playlist_songs.id, songs.id`,
       values: [playlistId]
     }
 
