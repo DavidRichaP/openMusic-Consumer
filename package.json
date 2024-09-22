@@ -4,7 +4,8 @@
   "description": "rabbitMQ consumer",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/consumer.js"
   },
   "author": "David R",
   "license": "ISC",
@@ -13,5 +14,8 @@
     "dotenv": "^16.4.5",
     "nodemailer": "^6.9.15",
     "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
